@@ -1,6 +1,6 @@
 package org.example;
 
-public class RoockMusic implements Music{
+public class RockMusic implements Music{
     @Override
     public String getSong() {
         return "Wind cries Mary";
