@@ -2,22 +2,21 @@ package org.example;
 
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class ClassicalMusic implements Music {
-    private ClassicalMusic() {
-    }
-    public static ClassicalMusic getInstance() {
-        return new ClassicalMusic();
+    private List<String> list;
+
+    public ClassicalMusic(List<String> list) {
+        this.list = list;
+        list.add("Toccata and fugue in d minor");
+        list.add("4 seasons");
+        list.add("Simphony №9");
     }
 
     @Override
     public String getSong() {
-        return "Hungarian Rhapsody";
-    }
-    public void doMyInit() {
-        System.out.println("Doing my init, without destroy, because of prototype");
-    }
-    public void doMyDestroy() {
-        System.out.println("Doing my destruction");
+        return this.list.get((int) (Math.random() * 3));
     }
 }
