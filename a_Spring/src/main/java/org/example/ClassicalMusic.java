@@ -1,6 +1,9 @@
 package org.example;
 
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 import org.springframework.stereotype.Component;
+
 
 import java.util.List;
 
@@ -19,4 +22,14 @@ public class ClassicalMusic implements Music {
     public String getSong() {
         return this.list.get((int) (Math.random() * 3));
     }
+
+    @PostConstruct
+    public void doMyInit() {
+        System.out.println("Doing my initialization");
+    }
+    @PreDestroy
+    public void doMyDestroy() {
+        System.out.println("Doing my destruction");
+    }
+
 }

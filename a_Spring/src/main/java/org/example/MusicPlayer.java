@@ -2,6 +2,7 @@ package org.example;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -10,8 +11,11 @@ public class MusicPlayer {
     private Music classical;
     private Music rock;
     private Music rap;
+    @Value("${musicPlayer.volume}")
+    private int volume;
+    @Value("${musicPlayer.name}")
+    private String name;
 
-    //IoC
 
     @Autowired
     public MusicPlayer(@Qualifier("classicalMusic") Music classical, @Qualifier("rockMusic") Music rock, @Qualifier("rapMusic") Music rap) {
@@ -36,4 +40,14 @@ public class MusicPlayer {
 
         }
     }
+
+    public int getVolume() {
+        return volume;
+    }
+
+
+    public String getName() {
+        return name;
+    }
+
 }
