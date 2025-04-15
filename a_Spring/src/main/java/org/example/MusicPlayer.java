@@ -5,40 +5,23 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-@Component
-public class MusicPlayer {
+import java.util.List;
 
-    private Music classical;
-    private Music rock;
-    private Music rap;
-    @Value("${musicPlayer.volume}")
+public class MusicPlayer {
+    private List<Music> genres;
+
     private int volume;
-    @Value("${musicPlayer.name}")
     private String name;
 
 
-    @Autowired
-    public MusicPlayer(@Qualifier("classicalMusic") Music classical, @Qualifier("rockMusic") Music rock, @Qualifier("rapMusic") Music rap) {
-        this.classical = classical;
-        this.rock = rock;
-        this.rap = rap;
 
+    public MusicPlayer(Genres genre) {
+        this.genres = genre.getGenres();
     }
 
 
-    public void   playMusic(Genre genreEnum) {
-        switch (genreEnum) {
-            case RAP:
-                System.out.println(this.rap.getSong());
-                break;
-            case ROCK:
-                System.out.println(this.rock.getSong());
-                break;
-            case CLASSICAL:
-                System.out.println(this.classical.getSong());
-                break;
-
-        }
+    public void  playMusic() {
+        System.out.println(genres.get((int) (Math.random() * 3)).getSong());
     }
 
     public int getVolume() {

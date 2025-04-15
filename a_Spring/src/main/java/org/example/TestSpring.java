@@ -1,18 +1,15 @@
 package org.example;
 
 import org.springframework.beans.BeansException;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class TestSpring  {
     public static void main(String[] args) throws BeansException {
-        ClassPathXmlApplicationContext context = new  ClassPathXmlApplicationContext(
-                "applicationContext.xml"
-        );
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(SpringConfig.class);
 
         MusicPlayer player = context.getBean("musicPlayer", MusicPlayer.class);
-        player.playMusic(Genre.CLASSICAL);
-        System.out.println(player.getName());
-        System.out.println(player.getVolume());
+        player.playMusic();
         context.close();
 
     }

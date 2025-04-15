@@ -2,15 +2,17 @@ package org.example;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 
 import java.util.List;
 
-@Component
+
 public class ClassicalMusic implements Music {
     private List<String> list;
 
+    @Autowired
     public ClassicalMusic(List<String> list) {
         this.list = list;
         list.add("Toccata and fugue in d minor");
